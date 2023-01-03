@@ -1,0 +1,6 @@
+node_modules
+*.exe
+dist
+testing-win32-x64
+token.txt
+testing-win32-x64.zip

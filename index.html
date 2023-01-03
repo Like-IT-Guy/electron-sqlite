@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    <title>Hello World!</title>
+    <link href="public/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Select2 css -->
+    <link href="public/assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <!-- DataTable css -->
+    <link href="public/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/assets/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+    <style>
+      .processing-spinner {
+          top: 0% !important;
+          background-color: #000;
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          z-index: 2000;
+          padding-top: 25%;
+          opacity: 0.60;
+          filter: alpha(opacity=50);
+      }
+    </style>
+</head>
+
+<body>
+    <!-- Processing Spinner -->
+    <div class="processing-spinner" id="processing-spinner" style="display: none">
+      <div class="row">
+          <div class="col-md-12 d-flex justify-content-center">
+              <div class="spinner-border text-success" role="status"
+                  style="width: 4rem;margin-left: 0%;height: 4rem;z-index: 20;">
+                  <span class="sr-only"></span>
+              </div>
+          </div>
+          <div class="col-md-12 d-flex justify-content-center">
+              <h1 style="margin-left: 0%;color:#ffffff;">Syncing from Live Database...</h1>
+          </div>
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="page-content-tab" style="background: #f1f5fa;">
+          <div class="container-fluid">
+            <h1>Connection status: <strong id='status'></strong></h1>
+
+            <div class="card">
+                <div class="card-header">
+                    <b>Names Table</b>
+                </div>
+                <div class="card-body">
+                    <table id="data-table" class="table table-bordered">
+                        <thead class="bg-secondary">
+                            <th>Id</th>
+                            <th>Name</th>
+                        </thead>
+                        <tbody id="tdata"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <br>
+
+            <div class="card">
+                <div class="card-header">
+                    <b>Images Table</b>
+                </div>
+                <div class="card-body">
+                    <table id="image-data-table" class="table table-bordered">
+                        <thead class="bg-secondary">
+                            <th>Id</th>
+                            <th>Images</th>
+                        </thead>
+                        <tbody id="imagetdata"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <br>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h1>File Upload in Blob</h1>
+                </div>
+        
+                <div class="card-body">
+                  <!-- <button id="upload">Upload File</button> -->
+                  <input type="file" name="upload" id="upload" accept="image/*">
+                  <div id="file_container"></div>
+                </div>
+        
+                <div class="card-footer">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h1>Insert New Name</h1>
+                </div>
+        
+                <div class="card-body">
+                    <input type="text" name="name" id="name">
+                </div>
+        
+                <div class="card-footer">
+                    <button class="btn btn-success" id="btnEd">Submit</button>
+                    <button class="btn btn-info" id="btnSn">Sync Database</button>
+                    <button class="btn btn-danger" id="btnSend">Send Data to Live Database</button>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    
+    <script src="public/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Jquery -->
+    <script src="public/assets/js/jquery-3.5.1.js"></script>
+    <!-- SweetAlert2 js -->
+    <script src="public/assets/js/sweetalert2.min.js"></script>
+    <!-- DataTable js -->
+    <script src="public/assets/js/jquery.validate.js"></script>
+    <script src="public/assets/js/jquery.dataTables.min.js"></script>
+    <script src="public/assets/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+    <script src="public/assets/js/dataTables.bootstrap5.min.js"></script>
+    <script src="renderer.js"></script>
+</body>
+</html>

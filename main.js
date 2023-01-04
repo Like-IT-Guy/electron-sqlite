@@ -1,7 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const { autoUpdater } = require('electron-updater');
+const log = require('electron-log');
+log.transports.file.resolvePath = () => path.join('logs/main.log');
 
+log.info("Application Version:" + app.getVersion());
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 1280,
@@ -28,19 +31,29 @@ app.whenReady().then(() => {
 });
 
 autoUpdater.on("update-available", () => {
-    alert("update-available");
+    log.info("update-available");
+});
+
+autoUpdater.on("update-not-available", () => {
+    log.info("update-not-available");
+});
+
+autoUpdater.on("error", (error) => {
+    log.info("Error in update");
+    log.info(error);
 });
 
 autoUpdater.on("checking-for-update", () => {
-    alert("checking-for-update");
+    log.info("checking-for-update");
 });
 
-autoUpdater.on("download-progress", () => {
-    alert("download-progress");
+autoUpdater.on("download-progress", (progressTrack) => {
+    log.info("\n\ndownload-progress")
+    log.info(progressTrack);
 });
 
 autoUpdater.on("update-downloaded", () => {
-    alert("update-downloaded");
+    log.info("update-downloaded");
 });
 
 
